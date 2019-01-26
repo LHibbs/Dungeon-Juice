@@ -18,6 +18,11 @@ public class DungeonJuiceScript : MonoBehaviour
         dungeonJuiceSlider.value += newValue;
     }
 
+    public float GetDungeonJuiceValue() 
+    {
+        return dungeonJuiceSlider.value;
+    }
+
     // Update is called once per frame
     void Update()
     {

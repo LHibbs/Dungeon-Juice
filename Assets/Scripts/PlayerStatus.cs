@@ -41,10 +41,12 @@ public class PlayerStatus : MonoBehaviour
 
     private void Upgrade()
     {
-        djs.ChangeDungeonJuiceValue(-50f);
-        maxHealth += upgradeHealthValue;
-        curHealth += upgradeHealthValue;
-        hbs.UpdateHealthColor();
+        if (djs.GetDungeonJuiceValue() >= 50f) 
+        {
+            djs.ChangeDungeonJuiceValue(-50f);
+            maxHealth += upgradeHealthValue;
+            curHealth += upgradeHealthValue;
+        }
     }
 
     public float GetMaxHealth()
