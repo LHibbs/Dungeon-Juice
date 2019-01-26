@@ -16,8 +16,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeed,
+        /*rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeed,
                                 Input.GetAxis("Vertical") * moveSpeed).normalized,
                                 ForceMode2D.Impulse);
+        */ 
+        /*transform.Translate(new Vector2(Input.GetAxis("Horizontal"),
+                                Input.GetAxis("Vertical")).normalized * moveSpeed);  
+                                */
+    }
+
+    void FixedUpdate() {
+        transform.Translate(new Vector2(Input.GetAxis("Horizontal"),
+                                Input.GetAxis("Vertical")).normalized * moveSpeed);  
     }
 }
