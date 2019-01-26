@@ -59,8 +59,9 @@ public class PlayerStatus : MonoBehaviour
         return curHealth;
     }
 
-    public void TakeDamage() {
+    public void TakeDamage(float damage) {
         if(!gameObject.GetComponent<PlayerMovement>().IsAttacking())
-            curHealth -= 10;
+            curHealth -= damage;
+
     }
 }
