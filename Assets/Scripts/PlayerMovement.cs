@@ -12,10 +12,13 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
 
+    private GameObject home;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        home = GameObject.Find("StartRoom");
     }
 
     // Update is called once per frame
@@ -44,6 +47,10 @@ public class PlayerMovement : MonoBehaviour
                 attackTimer += Time.deltaTime;
             }
         }
+
+        if(Input.GetButtonDown("Jump")) {
+            ReturnHome();
+        }
     }
 
     void FixedUpdate() {
@@ -60,6 +67,12 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = true;
         Vector2 attackDir = attackPos - transform.position;
         rb.AddForce(attackDir.normalized * attackSpeed, ForceMode2D.Impulse);
+    }
+
+    private void ReturnHome() {
+        if(home != null) {
+            transform.position = new Vector3(home.transform.position.x, home.transform.position.y, -1);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D coll) {

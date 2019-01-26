@@ -6,21 +6,37 @@ using UnityEngine.UI;
 public class DungeonJuiceScript : MonoBehaviour
 {
     public Slider dungeonJuiceSlider;
+    private float dungeonJuice;
 
     // Start is called before the first frame update
     void Start()
     {
+        dungeonJuice = 0f;
         dungeonJuiceSlider.maxValue = 100f;
     }
 
-    public void ChangeDungeonJuiceValue(float newValue)
+    public void ChangeDungeonJuiceSliderValue(float newValue)
     {
         dungeonJuiceSlider.value += newValue;
     }
 
-    public float GetDungeonJuiceValue() 
+    public float GetDungeonJuiceSliderValue() 
     {
         return dungeonJuiceSlider.value;
+    }
+
+    public void addToDungeonJuice(float changeAmount) {
+        dungeonJuice += changeAmount;
+        if(dungeonJuice < 0)
+            dungeonJuice = 0;
+        if(dungeonJuice > 100) {
+            dungeonJuice = 100;
+        }
+        
+    }
+
+    public float getDunjeonJuice() {
+        return dungeonJuice;
     }
 
     // Update is called once per frame
