@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 0.5f;
+    public float moveSpeed = 0.1f;
     Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -22,11 +22,16 @@ public class PlayerMovement : MonoBehaviour
         */ 
         /*transform.Translate(new Vector2(Input.GetAxis("Horizontal"),
                                 Input.GetAxis("Vertical")).normalized * moveSpeed);  
-                                */
+        */
     }
 
     void FixedUpdate() {
+        /*rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeed,
+                                Input.GetAxis("Vertical") * moveSpeed).normalized,
+                                ForceMode2D.Impulse);
+        */
         transform.Translate(new Vector2(Input.GetAxis("Horizontal"),
                                 Input.GetAxis("Vertical")).normalized * moveSpeed);  
+        
     }
 }
