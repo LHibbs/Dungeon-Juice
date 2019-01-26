@@ -68,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
             if(isAttacking) {
                 coll.gameObject.GetComponent<ImpController>().Kill();
             }
+        } else if (coll.tag == "Room") {
+                Debug.Log(coll.gameObject.name);
         }
     }
 
