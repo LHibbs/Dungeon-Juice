@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    private float maxHealth = 100f;
     private float curHealth = 100f;
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,16 @@ public class PlayerStatus : MonoBehaviour
     void Update()
     {
         Debug.Log("Health: " + curHealth);
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public float GetCurrentHealth()
+    {
+        return curHealth;
     }
 
     public void TakeDamage() {
