@@ -60,6 +60,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
     public void TakeDamage() {
-        curHealth -= 10;
+        if(!gameObject.GetComponent<PlayerMovement>().IsAttacking())
+            curHealth -= 10;
     }
 }

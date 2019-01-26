@@ -32,5 +32,9 @@ public class ImpController : MonoBehaviour
         if(coll.tag == "Player") {
             coll.gameObject.GetComponent<PlayerStatus>().TakeDamage();
         }
-    } 
+    }
+
+    public void Kill() {
+        Destroy(gameObject);
+    }
 }
