@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour
 {
-    private float maxHealth;
-
-    private float currentHealth;
-
     private PlayerStatus ps;
+
+    public Slider healthSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -19,15 +18,15 @@ public class HealthBarScript : MonoBehaviour
             Debug.Log("Error: HealthBarScript cannot find object \"Player\".");
         }
 
-        maxHealth = ps.GetMaxHealth();
+        healthSlider.maxValue = ps.GetMaxHealth();
         //Debug.Log("Health Bar's max health: " + maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        maxHealth = ps.GetMaxHealth();
-        currentHealth = ps.GetCurrentHealth();
+        healthSlider.maxValue = ps.GetMaxHealth();
+        healthSlider.value = ps.GetCurrentHealth();
 
         //Debug.Log("Health Bar's current health: " + currentHealth);
     }
