@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ImpController : MonoBehaviour
 {
+    public GameObject juicePrefab;
+
     private GameObject player;
     private float timer = 0f;
     private float attackTime = 2.5f;
@@ -35,6 +37,7 @@ public class ImpController : MonoBehaviour
     }
 
     public void Kill() {
+        Instantiate(juicePrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

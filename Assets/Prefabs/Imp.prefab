@@ -141,4 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f56846c70a4b46bb8acded835699644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  juicePrefab: {fileID: 5262314735856778190, guid: b5b19f3afe12145f8b7beaa8902ed642,
+    type: 3}
   moveForce: 25

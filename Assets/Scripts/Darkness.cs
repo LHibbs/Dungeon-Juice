@@ -17,7 +17,7 @@ public class Darkness : MonoBehaviour
     void Update()
     {
         Vector3 scale = gameObject.GetComponent<Transform>().localScale;
-        scale += new Vector3(0, 0.01F, 0);
+        scale += new Vector3(0, 0.005F, 0);
         gameObject.GetComponent<Transform>().localScale = scale;  
     
     }
@@ -25,13 +25,15 @@ public class Darkness : MonoBehaviour
     void OnTriggerEnter2D(Collider2D coll) {
         Debug.Log("entered");
         if(coll.tag == "Player") {
-            coll.gameObject.GetComponent<PlayerStatus>().TakeDamage(.1f);
+            coll.gameObject.GetComponent<PlayerStatus>().SetMaxHealth(
+                coll.gameObject.GetComponent<PlayerStatus>().GetMaxHealth()-1f);
         }
     }
  
     void OnTriggerStay2D(Collider2D coll){
         if(coll.tag == "Player") {
-            coll.gameObject.GetComponent<PlayerStatus>().TakeDamage(.1f);
+            coll.gameObject.GetComponent<PlayerStatus>().SetMaxHealth(
+                coll.gameObject.GetComponent<PlayerStatus>().GetMaxHealth()-1f);
         }
     } 
 

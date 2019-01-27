@@ -12,7 +12,10 @@ public class PlayerMovement : MonoBehaviour
     private float attackSpeed = 20f;
     private bool isAttacking = false;
     private float attackTimer = 0f;
-    private float attackTime = 1f;
+    private float attackTime = .15f;
+    private bool justAttacked = false;
+    private float attackCooldownTimer = 0f;
+    private float attackCooldown = .65f;
 
     Rigidbody2D rb;
 
@@ -21,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentRoom = GameObject.Find("StartRoom");
+        currentRoom.GetComponent<RoomScript>().SetHomeStatus(true);
+        djs = GameObject.Find("PlayerStatsObject").GetComponent<DungeonJuiceScript>();
         rb = GetComponent<Rigidbody2D>();
         home = GameObject.Find("StartRoom");
 
@@ -49,9 +55,12 @@ public class PlayerMovement : MonoBehaviour
         */
 
         if(Input.GetButtonDown("Fire1")) {
-            Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pz.z = 0;
-            Attack(pz); 
+            if(!justAttacked){
+                Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                pz.z = 0;
+                Attack(pz);
+                justAttacked = true; 
+            }
         }
 
         //Debug.Log(attackTimer);
@@ -64,11 +73,23 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if(justAttacked){
+            if(attackCooldownTimer > attackCooldown) {
+                justAttacked = false;
+                attackCooldownTimer = 0f;
+            } else {
+                attackCooldownTimer += Time.deltaTime;
+            }
+        }
         if(Input.GetButtonDown("Jump")) {
             ReturnHome();
         }
+        
+        if(Input.GetButtonDown("Home")) {
+            Debug.Log("" + currentRoom.GetComponent<RoomScript>().GetHomeStatus());
 
-        if (Input.GetButtonDown("Home") && currentRoom.GetComponent<RoomScript>().GetHomeStatus() == false && djs.GetDungeonJuiceSliderValue() >= 75f) {
+        }
+        if (Input.GetButtonDown("Home") && !currentRoom.GetComponent<RoomScript>().GetHomeStatus() && djs.GetDungeonJuice() >= 75f) {
             SetHome();
         }
     }
@@ -78,9 +99,11 @@ public class PlayerMovement : MonoBehaviour
                                 Input.GetAxis("Vertical") * moveSpeed).normalized,
                                 ForceMode2D.Impulse);
         */
+        
+        if(!isAttacking){
         transform.Translate(new Vector2(Input.GetAxis("Horizontal"),
                                 Input.GetAxis("Vertical")).normalized * moveSpeed);  
-        
+        }
     }
 
     private void Attack(Vector3 attackPos) {
@@ -98,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
     private void SetHome() 
     {
         //Debug.Log("Home Reset");
-        djs.ChangeDungeonJuiceSliderValue(-75f);   
+        djs.AddToDungeonJuice(-75f);   
         home.GetComponent<RoomScript>().SetHomeStatus(false);
         currentRoom.GetComponent<RoomScript>().SetHomeStatus(true);
         home = currentRoom;
@@ -114,8 +137,10 @@ public class PlayerMovement : MonoBehaviour
                 audio.Play();
             }
         } else if (coll.tag == "Room") {
-                //Debug.Log(coll.gameObject.name);
                 currentRoom = coll.gameObject;                
+        } else if (coll.tag == "Juice") {
+            djs.AddToDungeonJuice(10f);
+            Destroy(coll.gameObject);
         }
     }
 
