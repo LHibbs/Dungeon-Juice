@@ -12,7 +12,10 @@ public class PlayerMovement : MonoBehaviour
     private float attackSpeed = 20f;
     private bool isAttacking = false;
     private float attackTimer = 0f;
-    private float attackTime = 1f;
+    private float attackTime = .15f;
+    private bool justAttacked = false;
+    private float attackCooldownTimer = 0f;
+    private float attackCooldown = .65f;
 
     Rigidbody2D rb;
 
@@ -52,9 +55,12 @@ public class PlayerMovement : MonoBehaviour
         */
 
         if(Input.GetButtonDown("Fire1")) {
-            Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pz.z = 0;
-            Attack(pz); 
+            if(!justAttacked){
+                Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                pz.z = 0;
+                Attack(pz);
+                justAttacked = true; 
+            }
         }
 
         //Debug.Log(attackTimer);
@@ -67,6 +73,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if(justAttacked){
+            if(attackCooldownTimer > attackCooldown) {
+                justAttacked = false;
+                attackCooldownTimer = 0f;
+            } else {
+                attackCooldownTimer += Time.deltaTime;
+            }
+        }
         if(Input.GetButtonDown("Jump")) {
             ReturnHome();
         }
@@ -85,9 +99,11 @@ public class PlayerMovement : MonoBehaviour
                                 Input.GetAxis("Vertical") * moveSpeed).normalized,
                                 ForceMode2D.Impulse);
         */
+        
+        if(!isAttacking){
         transform.Translate(new Vector2(Input.GetAxis("Horizontal"),
                                 Input.GetAxis("Vertical")).normalized * moveSpeed);  
-        
+        }
     }
 
     private void Attack(Vector3 attackPos) {

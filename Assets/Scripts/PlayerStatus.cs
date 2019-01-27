@@ -54,6 +54,11 @@ public class PlayerStatus : MonoBehaviour
         return maxHealth;
     }
 
+    public void SetMaxHealth(float newMaxHealth)
+    {
+        maxHealth = newMaxHealth;
+    }
+
     public float GetCurrentHealth()
     {
         return curHealth;

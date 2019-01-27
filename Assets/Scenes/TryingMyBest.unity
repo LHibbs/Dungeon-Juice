@@ -691,6 +691,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1608496367375938805, guid: 030d38f88d894d243ad35e98b6e4338d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608496367375938805, guid: 030d38f88d894d243ad35e98b6e4338d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 030d38f88d894d243ad35e98b6e4338d, type: 3}
 --- !u!1 &847601401 stripped
@@ -711,7 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea4409d7e86aa64cb71bafed3e7d203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  darkness: {fileID: 0}
+  darknessHeight: 0
 --- !u!1001 &857208425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1197,7 +1207,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 2066018874}
-  healthColor: {fileID: 1131808991}
 --- !u!4 &1462226746
 Transform:
   m_ObjectHideFlags: 0
