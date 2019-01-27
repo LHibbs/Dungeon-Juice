@@ -17,4 +17,12 @@ public class RoomScript : MonoBehaviour
         
     }
 
+    public bool GetHomeStatus() {
+        return isHome;
+    }
+
+    public void SetHomeStatus(bool status) {
+        isHome = status;
+    }
+
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public AudioSource audio;
+    private GameObject pentagram;
+    private DungeonJuiceScript djs;
+    private GameObject currentRoom;
     public float moveSpeed = 0.1f;
     private float attackSpeed = 20f;
     private bool isAttacking = false;
@@ -19,6 +23,18 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         home = GameObject.Find("StartRoom");
+
+        djs = GameObject.Find("PlayerStatsObject").GetComponent<DungeonJuiceScript>();
+        if (djs == null)
+        {
+            Debug.Log("Error: PlayerStatus could not find object \"DungeonJuiceScript\".");
+        }
+
+        pentagram = GameObject.Find("Pentagram");
+        if (pentagram == null)
+        {
+            Debug.Log("Error: PlayerStatus could not find object \"Pentagram\".");
+        }
     }
 
     // Update is called once per frame
@@ -51,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump")) {
             ReturnHome();
         }
+
+        if (Input.GetButtonDown("Home") && currentRoom.GetComponent<RoomScript>().GetHomeStatus() == false && djs.GetDungeonJuiceSliderValue() >= 75f) {
+            SetHome();
+        }
     }
 
     void FixedUpdate() {
@@ -75,14 +95,27 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void SetHome() 
+    {
+        //Debug.Log("Home Reset");
+        djs.ChangeDungeonJuiceSliderValue(-75f);   
+        home.GetComponent<RoomScript>().SetHomeStatus(false);
+        currentRoom.GetComponent<RoomScript>().SetHomeStatus(true);
+        home = currentRoom;
+        pentagram.transform.position = new Vector3(currentRoom.transform.position.x, currentRoom.transform.position.y);
+        
+    }
+
     void OnTriggerEnter2D(Collider2D coll) {
         //Debug.Log(coll.tag);
         if(coll.tag == "Enemy") {
             if(isAttacking) {
                 coll.gameObject.GetComponent<ImpController>().Kill();
+                audio.Play();
             }
         } else if (coll.tag == "Room") {
-                Debug.Log(coll.gameObject.name);
+                //Debug.Log(coll.gameObject.name);
+                currentRoom = coll.gameObject;                
         }
     }
 
