@@ -31,7 +31,7 @@ public class Darkness : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D coll) {
-        Debug.Log("entered");
+        //Debug.Log("Darkness Entered");
         if(coll.tag == "Player") {
             coll.gameObject.GetComponent<PlayerStatus>().TakeDamage(.1f*multiplier);
         }

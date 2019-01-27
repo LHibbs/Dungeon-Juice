@@ -1198,6 +1198,7 @@ GameObject:
   - component: {fileID: 2512235304405064799}
   - component: {fileID: 7348005771338155096}
   - component: {fileID: 6350307580549470989}
+  - component: {fileID: 3111630001876088517}
   - component: {fileID: 2915238337560915528}
   m_Layer: 0
   m_Name: Room
@@ -1215,7 +1216,7 @@ Transform:
   m_GameObject: {fileID: 7222427823439719164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.41, y: 2.09, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 0.9250005}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_Children:
   - {fileID: 149577785247007548}
   - {fileID: 4644684991896942108}
@@ -1292,6 +1293,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHome: 0
+--- !u!114 &3111630001876088517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222427823439719164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f719b6c870c7fa040abeaa79ca597d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfImps: 10
+  Imp: {fileID: 5762804047229518237, guid: 8cebfc2767afc4952bcfd6ca307782ce, type: 3}
 --- !u!61 &2915238337560915528
 BoxCollider2D:
   m_ObjectHideFlags: 0

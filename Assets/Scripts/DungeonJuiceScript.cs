@@ -44,9 +44,12 @@ public class DungeonJuiceScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //For debugging dungeon juice:
+        /* 
         if (Input.GetMouseButtonDown(0))
         {
             AddToDungeonJuice(10f);
         }
+        */
     }
 }

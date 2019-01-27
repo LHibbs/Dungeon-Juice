@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     private GameObject[] lightLevels;
-    private int lightLevelIndex = 1;
+    private int lightLevelIndex = 0;
     private float upgradeHealthValue = 100f;
 
     private float maxHealth = 100f;
@@ -37,7 +37,7 @@ public class PlayerStatus : MonoBehaviour
             Debug.Log("Error: Darkness (script) could not find object \"Darkness\".");
         }
 
-        lightLevels = new GameObject[4];
+        lightLevels = new GameObject[5];
 
         lightLevels[0] = GameObject.Find("circle1");
         if (lightLevels[0] == null)
@@ -59,11 +59,17 @@ public class PlayerStatus : MonoBehaviour
         {
             Debug.Log("Error: PlayerStatus could not find object \"circle4\".");
         }
+        lightLevels[4] = GameObject.Find("circle5");
+        if (lightLevels[4] == null)
+        {
+            Debug.Log("Error: PlayerStatus could not find object \"circle5\".");
+        }
 
         lightLevels[0].SetActive(false);
         lightLevels[1].SetActive(false);
         lightLevels[2].SetActive(false);
         lightLevels[3].SetActive(false);
+        lightLevels[4].SetActive(false);
 
     }
 
@@ -80,7 +86,7 @@ public class PlayerStatus : MonoBehaviour
 
     private void Upgrade()
     {
-        if (djs.GetDungeonJuice() >= 50f && lightLevelIndex < 4) 
+        if (djs.GetDungeonJuice() >= 50f && lightLevelIndex < 5) 
         {
             djs.AddToDungeonJuice(-50f);
             ds.AddMultiplier(-.3f);
