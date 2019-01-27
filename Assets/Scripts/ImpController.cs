@@ -30,7 +30,7 @@ public class ImpController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll) {
         if(coll.tag == "Player") {
-            coll.gameObject.GetComponent<PlayerStatus>().TakeDamage();
+            coll.gameObject.GetComponent<PlayerStatus>().TakeDamage(10);
         }
     }
 
