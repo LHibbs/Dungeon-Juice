@@ -17,7 +17,7 @@ public class DungeonJuiceScript : MonoBehaviour
 
     public void ChangeDungeonJuiceSliderValue(float newValue)
     {
-        dungeonJuiceSlider.value += newValue;
+        dungeonJuiceSlider.value = newValue;
     }
 
     public float GetDungeonJuiceSliderValue() 
@@ -32,10 +32,12 @@ public class DungeonJuiceScript : MonoBehaviour
         if(dungeonJuice > 100) {
             dungeonJuice = 100;
         }
-        
+        Debug.Log("Current DJ: " + dungeonJuice);
+
+        ChangeDungeonJuiceSliderValue(dungeonJuice);
     }
 
-    public float GetDunjeonJuice() {
+    public float GetDungeonJuice() {
         return dungeonJuice;
     }
 
@@ -44,7 +46,7 @@ public class DungeonJuiceScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            dungeonJuiceSlider.value += 10f;
+            AddToDungeonJuice(10f);
         }
     }
 }

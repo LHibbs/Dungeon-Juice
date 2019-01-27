@@ -16,13 +16,13 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
 
-    private DungeonJuiceScript djs;
-
     private GameObject home;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentRoom = GameObject.Find("StartRoom");
+        currentRoom.GetComponent<RoomScript>().SetHomeStatus(true);
         djs = GameObject.Find("PlayerStatsObject").GetComponent<DungeonJuiceScript>();
         rb = GetComponent<Rigidbody2D>();
         home = GameObject.Find("StartRoom");
@@ -70,8 +70,12 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump")) {
             ReturnHome();
         }
+        
+        if(Input.GetButtonDown("Home")) {
+            Debug.Log("" + currentRoom.GetComponent<RoomScript>().GetHomeStatus());
 
-        if (Input.GetButtonDown("Home") && currentRoom.GetComponent<RoomScript>().GetHomeStatus() == false && djs.GetDungeonJuiceSliderValue() >= 75f) {
+        }
+        if (Input.GetButtonDown("Home") && !currentRoom.GetComponent<RoomScript>().GetHomeStatus() && djs.GetDungeonJuice() >= 75f) {
             SetHome();
         }
     }
@@ -101,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
     private void SetHome() 
     {
         //Debug.Log("Home Reset");
-        djs.ChangeDungeonJuiceSliderValue(-75f);   
+        djs.AddToDungeonJuice(-75f);   
         home.GetComponent<RoomScript>().SetHomeStatus(false);
         currentRoom.GetComponent<RoomScript>().SetHomeStatus(true);
         home = currentRoom;
