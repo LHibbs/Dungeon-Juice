@@ -25,7 +25,7 @@ public class DungeonJuiceScript : MonoBehaviour
         return dungeonJuiceSlider.value;
     }
 
-    public void addToDungeonJuice(float changeAmount) {
+    public void AddToDungeonJuice(float changeAmount) {
         dungeonJuice += changeAmount;
         if(dungeonJuice < 0)
             dungeonJuice = 0;
@@ -35,7 +35,7 @@ public class DungeonJuiceScript : MonoBehaviour
         
     }
 
-    public float getDunjeonJuice() {
+    public float GetDunjeonJuice() {
         return dungeonJuice;
     }
 

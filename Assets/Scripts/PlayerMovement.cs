@@ -16,11 +16,14 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
 
+    private DungeonJuiceScript djs;
+
     private GameObject home;
 
     // Start is called before the first frame update
     void Start()
     {
+        djs = GameObject.Find("PlayerStatsObject").GetComponent<DungeonJuiceScript>();
         rb = GetComponent<Rigidbody2D>();
         home = GameObject.Find("StartRoom");
 
@@ -114,8 +117,10 @@ public class PlayerMovement : MonoBehaviour
                 audio.Play();
             }
         } else if (coll.tag == "Room") {
-                //Debug.Log(coll.gameObject.name);
                 currentRoom = coll.gameObject;                
+        } else if (coll.tag == "Juice") {
+            djs.AddToDungeonJuice(10f);
+            Destroy(coll.gameObject);
         }
     }
 
