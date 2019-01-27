@@ -23904,8 +23904,8 @@ GameObject:
   - component: {fileID: 6482815961396814691}
   - component: {fileID: 6482815961396814701}
   - component: {fileID: 188387706}
-  - component: {fileID: 852837240}
-  m_Layer: 0
+  - component: {fileID: 617943469}
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -24038,7 +24038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336427f52a44e4a46be6d154bd33a006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 852837240}
+  audio: {fileID: 617943469}
   moveSpeed: 0.1
 --- !u!114 &188387706
 MonoBehaviour:
@@ -24052,7 +24052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2448a515243da4a419663febbdad2e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &852837240
+  deathScreen: {fileID: 0}
+--- !u!82 &617943469
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

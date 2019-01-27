@@ -32,7 +32,6 @@ public class DungeonJuiceScript : MonoBehaviour
         if(dungeonJuice > 100) {
             dungeonJuice = 100;
         }
-        Debug.Log("Current DJ: " + dungeonJuice);
 
         ChangeDungeonJuiceSliderValue(dungeonJuice);
     }
@@ -41,15 +40,4 @@ public class DungeonJuiceScript : MonoBehaviour
         return dungeonJuice;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //For debugging dungeon juice:
-        /* 
-        if (Input.GetMouseButtonDown(0))
-        {
-            AddToDungeonJuice(10f);
-        }
-        */
-    }
 }

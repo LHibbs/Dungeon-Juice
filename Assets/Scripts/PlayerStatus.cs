@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -11,10 +12,13 @@ public class PlayerStatus : MonoBehaviour
     private float maxHealth = 100f;
     private float curHealth = 100f;
 
+    private bool isAlive = true;
+
     private DungeonJuiceScript djs;
 
     private Darkness ds;
     private HealthBarScript hbs;
+    public GameObject deathScreen;
     
     // Start is called before the first frame update
     void Start()
@@ -76,13 +80,28 @@ public class PlayerStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Health: " + curHealth);
+        if(!isAlive) {
+            if(Input.GetButtonDown("Restart")) {
+                Scene loadedLevel = SceneManager.GetActiveScene ();
+                SceneManager.LoadScene (loadedLevel.buildIndex);
+            }
+        }
+        
+        if(curHealth <= 0) {
+            Kill();
+        }
 
-        if (Input.GetMouseButtonDown(1))
-        {
+        if (Input.GetMouseButtonDown(1)) {
             Upgrade();
         }
     }
+
+    private void Kill() {
+        isAlive = false;
+        gameObject.GetComponent<PlayerMovement>().enabled = false;
+        deathScreen.SetActive(true);
+    }
+
 
     private void Upgrade()
     {

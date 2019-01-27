@@ -19,7 +19,6 @@ public class HealthBarScript : MonoBehaviour
         }
 
         healthSlider.maxValue = ps.GetMaxHealth();
-        //Debug.Log("Health Bar's max health: " + maxHealth);        
     }
 
     // Update is called once per frame
@@ -27,6 +26,5 @@ public class HealthBarScript : MonoBehaviour
     {
         healthSlider.maxValue = ps.GetMaxHealth();
         healthSlider.value = ps.GetCurrentHealth();
-        //Debug.Log("Health Bar's current health: " + currentHealth);
     }
 }

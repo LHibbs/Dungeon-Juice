@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public AudioSource audio;
+    public AudioSource audioS;
     private GameObject pentagram;
     private DungeonJuiceScript djs;
     private GameObject currentRoom;
     public float moveSpeed = 0.1f;
-    private float attackSpeed = 20f;
+    private float attackSpeed = 30f;
     private bool isAttacking = false;
     private float attackTimer = 0f;
-    private float attackTime = .15f;
+    private float attackTime = .50f;
     private bool justAttacked = false;
     private float attackCooldownTimer = 0f;
-    private float attackCooldown = .65f;
+    private float attackCooldown = .45f;
 
     Rigidbody2D rb;
 
@@ -63,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //Debug.Log(attackTimer);
         if(isAttacking) {
             if(attackTimer > attackTime) {
                 isAttacking = false;
@@ -85,10 +84,6 @@ public class PlayerMovement : MonoBehaviour
             ReturnHome();
         }
         
-        if(Input.GetButtonDown("Home")) {
-            Debug.Log("" + currentRoom.GetComponent<RoomScript>().GetHomeStatus());
-
-        }
         if (Input.GetButtonDown("Home") && !currentRoom.GetComponent<RoomScript>().GetHomeStatus() && djs.GetDungeonJuice() >= 75f) {
             SetHome();
         }
@@ -100,10 +95,16 @@ public class PlayerMovement : MonoBehaviour
                                 ForceMode2D.Impulse);
         */
         
-        if(!isAttacking){
+        /*if(!isAttacking){
         transform.Translate(new Vector2(Input.GetAxis("Horizontal"),
                                 Input.GetAxis("Vertical")).normalized * moveSpeed);  
+        }*/
+        if(!isAttacking){
+            Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pz.z = -1;
+            transform.Translate((transform.position - pz).normalized * -moveSpeed);  
         }
+
     }
 
     private void Attack(Vector3 attackPos) {
@@ -120,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetHome() 
     {
-        //Debug.Log("Home Reset");
         djs.AddToDungeonJuice(-75f);   
         home.GetComponent<RoomScript>().SetHomeStatus(false);
         currentRoom.GetComponent<RoomScript>().SetHomeStatus(true);
@@ -130,11 +130,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D coll) {
-        //Debug.Log(coll.tag);
         if(coll.tag == "Enemy") {
             if(isAttacking) {
                 coll.gameObject.GetComponent<ImpController>().Kill();
-                audio.Play();
+                audioS.Play();
             }
         } else if (coll.tag == "Room") {
                 currentRoom = coll.gameObject;                
