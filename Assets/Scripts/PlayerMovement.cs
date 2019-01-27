@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private GameObject controls;
+    private SpriteRenderer spriteRenderer;  
+    private Darkness ds;
+    private GameObject[] lightLevels;
+    private int lightLevelIndex = 0;
     public AudioSource audioS;
     private GameObject pentagram;
     private DungeonJuiceScript djs;
@@ -24,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controls = GameObject.Find("Controls");
+
+        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+
         currentRoom = GameObject.Find("StartRoom");
         currentRoom.GetComponent<RoomScript>().SetHomeStatus(true);
         djs = GameObject.Find("PlayerStatsObject").GetComponent<DungeonJuiceScript>();
@@ -41,6 +50,48 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Error: PlayerStatus could not find object \"Pentagram\".");
         }
+
+
+        ds = GameObject.Find("Darkness").GetComponent<Darkness>();
+        if (ds == null)
+        {
+            Debug.Log("Error: Darkness (script) could not find object \"Darkness\".");
+        }
+
+        lightLevels = new GameObject[5];
+
+        lightLevels[0] = GameObject.Find("circle1");
+        if (lightLevels[0] == null)
+        {
+            Debug.Log("Error: PlayerStatus could not find object \"circle1\".");
+        }
+        lightLevels[1] = GameObject.Find("circle2");
+        if (lightLevels[1] == null)
+        {
+            Debug.Log("Error: PlayerStatus could not find object \"circle2\".");
+        }
+        lightLevels[2] = GameObject.Find("circle3");
+        if (lightLevels[2] == null)
+        {
+            Debug.Log("Error: PlayerStatus could not find object \"circle3\".");
+        }
+        lightLevels[3] = GameObject.Find("circle4");
+        if (lightLevels[3] == null)
+        {
+            Debug.Log("Error: PlayerStatus could not find object \"circle4\".");
+        }
+        lightLevels[4] = GameObject.Find("circle5");
+        if (lightLevels[4] == null)
+        {
+            Debug.Log("Error: PlayerStatus could not find object \"circle5\".");
+        }
+        
+        lightLevels[0].SetActive(false);
+        lightLevels[1].SetActive(false);
+        lightLevels[2].SetActive(false);
+        lightLevels[3].SetActive(false);
+        lightLevels[4].SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -59,8 +110,12 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pz.z = 0;
                 Attack(pz);
-                justAttacked = true; 
+                justAttacked = true;
             }
+        }
+
+        if (Input.GetButtonDown("Escape")) {
+            controls.SetActive(false);
         }
 
         if(isAttacking) {
@@ -80,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
                 attackCooldownTimer += Time.deltaTime;
             }
         }
-        if(Input.GetButtonDown("Jump")) {
+        if(Input.GetButtonDown("Fire2")) {
             ReturnHome();
         }
         
@@ -102,7 +157,15 @@ public class PlayerMovement : MonoBehaviour
         if(!isAttacking){
             Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pz.z = -1;
-            transform.Translate((transform.position - pz).normalized * -moveSpeed);  
+            transform.Translate((transform.position - pz).normalized * -moveSpeed);
+
+            //Flip player sprite towards mouse position
+            if (Input.mousePosition.x > Screen.width/2)  {
+                spriteRenderer.flipX = false;
+            } else if (Input.mousePosition.x < Screen.width/2) {
+                spriteRenderer.flipX = true;
+            }
+            
         }
 
     }
@@ -126,6 +189,11 @@ public class PlayerMovement : MonoBehaviour
         currentRoom.GetComponent<RoomScript>().SetHomeStatus(true);
         home = currentRoom;
         pentagram.transform.position = new Vector3(currentRoom.transform.position.x, currentRoom.transform.position.y);
+
+        ds.AddMultiplier(-.3f);
+
+            lightLevels[lightLevelIndex].SetActive(true);
+            lightLevelIndex++;
         
     }
 

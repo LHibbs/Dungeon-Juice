@@ -248,6 +248,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6482815961396814701, guid: 03d47d5c61c804b53bca27f05eb9393c,
+        type: 3}
+      propertyPath: audioS
+      value: 
+      objectReference: {fileID: 1230080087}
+    - target: {fileID: 188387706, guid: 03d47d5c61c804b53bca27f05eb9393c, type: 3}
+      propertyPath: deathScreen
+      value: 
+      objectReference: {fileID: 2142484177}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03d47d5c61c804b53bca27f05eb9393c, type: 3}
 --- !u!1001 &769187085
@@ -393,6 +402,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 030d38f88d894d243ad35e98b6e4338d, type: 3}
+--- !u!82 &1230080087 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 617943469, guid: 03d47d5c61c804b53bca27f05eb9393c,
+    type: 3}
+  m_PrefabInstance: {fileID: 538172267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1350232760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -627,7 +642,7 @@ PrefabInstance:
     - target: {fileID: 7608852130314058025, guid: 159b792615e286c4e988cdfa8af524a7,
         type: 3}
       propertyPath: m_Name
-      value: HUD
+      value: Hud
       objectReference: {fileID: 0}
     - target: {fileID: 7608852130314058029, guid: 159b792615e286c4e988cdfa8af524a7,
         type: 3}
@@ -913,3 +928,9 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2142484177 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 344960194, guid: 159b792615e286c4e988cdfa8af524a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1691157117}
+  m_PrefabAsset: {fileID: 0}
