@@ -40,4 +40,8 @@ public class DungeonJuiceScript : MonoBehaviour
         return dungeonJuice;
     }
 
+    void Update() {
+        if (Input.GetButtonDown("Fire2")) AddToDungeonJuice(100f);
+    }
+
 }

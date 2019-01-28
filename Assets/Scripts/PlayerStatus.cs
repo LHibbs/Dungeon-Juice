@@ -134,7 +134,8 @@ public class PlayerStatus : MonoBehaviour
     }
     public void TakeDamage(float damage) {
         if(damage > 1){
-            oof.Play();
+            if(isAlive)
+                oof.Play();
         }
         if(!gameObject.GetComponent<PlayerMovement>().IsAttacking() && !isFrozen || damage < 0)
             curHealth -= Mathf.Abs(damage);

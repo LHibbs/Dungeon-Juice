@@ -8,6 +8,8 @@ public class Darkness : MonoBehaviour
     private float scaleFactor = 0.0009f;
     private float shrinkFactor = -0.02f;
 
+    public float darknessDamage = -0.1f;
+
     private float multiplier = 1f;
     public int darknessHeight;
 
@@ -47,13 +49,13 @@ public class Darkness : MonoBehaviour
     void OnTriggerEnter2D(Collider2D coll) {
         //Debug.Log("Darkness Entered");
         if(coll.tag == "Player") {
-            coll.gameObject.GetComponent<PlayerStatus>().TakeDamage(-0.1f*multiplier);
+            coll.gameObject.GetComponent<PlayerStatus>().TakeDamage(darknessDamage*multiplier);
         }
     }
  
     void OnTriggerStay2D(Collider2D coll){
         if(coll.tag == "Player") {
-            coll.gameObject.GetComponent<PlayerStatus>().TakeDamage(-0.1f*multiplier);
+            coll.gameObject.GetComponent<PlayerStatus>().TakeDamage(darknessDamage*multiplier);
         }
     }
 
