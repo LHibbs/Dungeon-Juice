@@ -4,7 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: 0x72_16x16DungeonTileset.v4_0
     21300002: 0x72_16x16DungeonTileset.v4_1
-    21300004: 0x72_16x16DungeonTileset.v4_2
+    21300004: Rusty_sword
     21300006: 0x72_16x16DungeonTileset.v4_3
     21300008: 0x72_16x16DungeonTileset.v4_4
     21300010: 0x72_16x16DungeonTileset.v4_5
@@ -53,7 +53,9 @@ TextureImporter:
     21300096: 0x72_16x16DungeonTileset.v4_48
     21300098: 0x72_16x16DungeonTileset.v4_49
     21300100: 0x72_16x16DungeonTileset.v4_50
-    21300102: 0x72_16x16DungeonTileset.v4_51
+    21300102: Imp
+    21300104: Thrower
+    21300106: Thrower_Green
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -176,7 +178,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_2
+      name: Rusty_sword
       rect:
         serializedVersion: 2
         x: 163
@@ -1156,7 +1158,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_51
+      name: Imp
       rect:
         serializedVersion: 2
         x: 3
@@ -1164,13 +1166,53 @@ TextureImporter:
         width: 10
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 3555342f1d4eb4cc9a595c2c550c0094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thrower
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 64
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ed2c1cf7dc74592bfc02746bbd442c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thrower_Green
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 48
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7239055cea2d46c48884550a7169a7a
       vertices: []
       indices: 
       edges: []
