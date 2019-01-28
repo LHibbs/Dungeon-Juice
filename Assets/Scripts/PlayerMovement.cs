@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public PlayerStatus ps;
     private GameObject controls;
     private SpriteRenderer spriteRenderer;  
     private Darkness ds;
     private GameObject[] lightLevels;
     private int lightLevelIndex = 0;
     public AudioSource audioS;
+    public AudioSource attackSound;
+    public AudioSource pickup;
     private GameObject pentagram;
     private DungeonJuiceScript djs;
     private GameObject currentRoom;
@@ -172,6 +175,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack(Vector3 attackPos) {
         isAttacking = true;
+        attackSound.Play();
         Vector2 attackDir = attackPos - transform.position;
         rb.AddForce(attackDir.normalized * attackSpeed, ForceMode2D.Impulse);
     }
@@ -192,8 +196,12 @@ public class PlayerMovement : MonoBehaviour
 
         ds.AddMultiplier(-.3f);
 
-            lightLevels[lightLevelIndex].SetActive(true);
-            lightLevelIndex++;
+        lightLevels[lightLevelIndex].SetActive(true);
+        lightLevelIndex++;
+
+        if(lightLevelIndex == 5){
+            ps.MusicFadeOut();
+        }
         
     }
 
@@ -206,6 +214,7 @@ public class PlayerMovement : MonoBehaviour
         } else if (coll.tag == "Room") {
                 currentRoom = coll.gameObject;                
         } else if (coll.tag == "Juice") {
+            pickup.Play();
             djs.AddToDungeonJuice(10f);
             Destroy(coll.gameObject);
         }
