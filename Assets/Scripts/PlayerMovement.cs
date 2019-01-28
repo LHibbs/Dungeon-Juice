@@ -206,9 +206,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D coll) {
-        if(coll.tag == "Enemy") {
+        if(coll.tag == "Imp") {
             if(isAttacking) {
                 coll.gameObject.GetComponent<ImpController>().Kill();
+                audioS.Play();
+            }
+        } else if(coll.tag == "Archer") {
+            if(isAttacking) {
+                coll.gameObject.GetComponent<ThrowerScript>().Kill();
                 audioS.Play();
             }
         } else if (coll.tag == "Room") {

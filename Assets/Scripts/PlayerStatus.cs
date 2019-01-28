@@ -55,7 +55,7 @@ public class PlayerStatus : MonoBehaviour
         if(debug) {
             curHealth = 100f;
         }
-        if(!isAlive) {
+        if(!isAlive || isFrozen) {
             if(Input.GetButtonDown("Restart")) {
                 Scene loadedLevel = SceneManager.GetActiveScene ();
                 SceneManager.LoadScene (loadedLevel.buildIndex);

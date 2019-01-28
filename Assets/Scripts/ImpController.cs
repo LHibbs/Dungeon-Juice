@@ -7,14 +7,14 @@ public class ImpController : MonoBehaviour
     public GameObject juicePrefab;
 
     private GameObject player;
-    private float timer = 0f;
+    private float timer = 1f;
     private float attackTime = 1.5f;
     private Rigidbody2D rb;
     public float moveForce = 15;
     // Start is called before the first frame update
     void Start()
     {
-        timer = Random.Range(-2f, 0f);
+        timer = Random.Range(0.5f, 1f);
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
     }

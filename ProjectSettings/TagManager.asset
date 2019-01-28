@@ -9,6 +9,8 @@ TagManager:
   - Juice
   - End
   - Wall
+  - Archer
+  - Imp
   layers:
   - Default
   - TransparentFX

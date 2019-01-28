@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3817803366340281752}
   m_Layer: 0
   m_Name: Thrower_Green
-  m_TagString: Untagged
+  m_TagString: Archer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,4 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordPrefab: {fileID: 1283305204353334424, guid: 0252818e6c46b46549c9fa03112649de,
+    type: 3}
+  juicePrefab: {fileID: 5262314735856778190, guid: b5b19f3afe12145f8b7beaa8902ed642,
     type: 3}

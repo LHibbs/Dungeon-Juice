@@ -8,6 +8,8 @@ public class ThrowerScript : MonoBehaviour
     private GameObject swordInstance;
     private GameObject player;
 
+    public GameObject juicePrefab;
+
     private float timer = 0f;
     private float attackTime;
     // Start is called before the first frame update
@@ -29,5 +31,10 @@ public class ThrowerScript : MonoBehaviour
             attackTime = Random.Range(1.25f, 1.75f);
         }
         
+    }
+
+    public void Kill() {
+        Instantiate(juicePrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

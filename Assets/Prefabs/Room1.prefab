@@ -1293,7 +1293,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHome: 0
   numberOfImps: 0
+  numberOfArchers: 0
   Imp: {fileID: 5762804047229518237, guid: 8cebfc2767afc4952bcfd6ca307782ce, type: 3}
+  Archer: {fileID: 8343829130819524226, guid: 843c425adbef044f2a8576ab88f0e00a, type: 3}
 --- !u!61 &2915238337560915528
 BoxCollider2D:
   m_ObjectHideFlags: 0
